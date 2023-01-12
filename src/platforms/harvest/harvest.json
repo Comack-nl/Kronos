@@ -1,0 +1,37 @@
+{
+  "decimalSeparator": ".",
+  "mappings": {
+    "Date": "Start date",
+    "Client": "Client",
+    "Project": "Project",
+    "Notes": "Description",
+    "Hours": "Duration",
+    "Billable?": "Billable"
+  },
+  "additionalColumns": {
+    "Email": {
+      "field": "email",
+      "required": true,
+      "type": "text",
+      "description": "E-mail"
+    },
+    "Start time": {
+      "field": "start",
+      "required": true,
+      "type": "text",
+      "description": "Start time"
+    },
+    "Client": {
+      "field": "client",
+      "required": false,
+      "type": "text",
+      "description": "Allows you to override the set client"
+    },
+    "Project": {
+      "field": "project",
+      "required": false,
+      "type": "text",
+      "description": "Allows you to override the set project"
+    }
+  }
+}

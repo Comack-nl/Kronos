@@ -1,0 +1,28 @@
+{
+  "name": "kronos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "kronos": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
+  },
+  "author": "Jimmy Comack",
+  "license": "ISC",
+  "dependencies": {
+    "clear": "^0.1.0",
+    "commander": "^9.4.1",
+    "csv": "^6.2.5",
+    "dayjs": "^1.11.7",
+    "jsonfile": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/clear": "^0.1.2",
+    "@types/jsonfile": "^6.1.0",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  }
+}
