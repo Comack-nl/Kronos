@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { Columns, Option, OptionConfig, Record } from "./types";
-import { parse, CastingContext } from "csv-parse";
+import { CastingContext, parse } from "csv-parse";
 import { OptionValues } from "commander";
 import { stringify } from "csv-stringify";
 
@@ -73,12 +73,11 @@ export default abstract class AbstractConverter {
 	}
 
 	alterRow( record: Record, context: CastingContext ): Record {
-		for ( const additional of Object.values( this.config.additionalColumns ) as OptionConfig[] ) {
-			if ( this.options[ additional.field ] !== undefined ) {
+		for ( const [ key, additional ] of Object.entries( this.config.additionalColumns ) ) {
+			const { field } = additional as OptionConfig;
 
-				const key = this.capitalize( additional.field ) as any;
-
-				record[ key ] = this.options[ additional.field ];
+			if ( this.options[ field ] !== undefined ) {
+				record[ this.capitalize( key ) as any ] = this.options[ field ];
 			}
 		}
 

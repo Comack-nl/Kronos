@@ -38,18 +38,24 @@ export default class HarvestConverter extends AbstractConverter {
 		record = super.alterRow( record, context );
 
 		if ( Object.keys( this.previousRow ).length !== 0 && record[ "Start date"] === this.previousRow[ "Start date" ] ) {
-			const parsedStart = dayjs( this.previousRow[ "Start" ], "HH:mm:ss" );
+			const parsedStart = dayjs( this.previousRow[ "Start time" ], "HH:mm:ss" );
 			const parsed = dayjs( this.previousRow[ "Duration" ], "HH:mm:ss" );
 
-			const newTime = parsedStart.add(
-				dayjs.duration( {
-					hours: parsed.get( "hour" ),
-					minutes: parsed.get( "minute" ),
-					seconds: parsed.get( "second" )
-				} )
-			);
+			let newTime: dayjs.Dayjs;
 
-			record[ "Start" ] = newTime.format( "HH:mm:ss" );
+			if ( record [ "Description" ] === "KPS: Stand-up" ) {
+				newTime = dayjs( "12:00:00", "HH:mm:ss" );
+			} else {
+				newTime = parsedStart.add(
+					dayjs.duration( {
+						hours: parsed.get( "hour" ),
+						minutes: parsed.get( "minute" ),
+						seconds: parsed.get( "second" )
+					} )
+				);
+			}
+
+			record[ "Start time" ] = newTime.format( "HH:mm:ss" );
 		}
 
 		this.previousRow = record;
